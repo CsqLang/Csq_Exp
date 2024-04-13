@@ -49,7 +49,7 @@ class BinOp(TreeNode):
                         return ""
                 case '/':
                     if self.ltype != "str":
-                        return Num(self.left.visit() / self.right.visit())
+                        return self.left.visit() / self.right.visit()
                     else:
                         return ""
                 case '%':
@@ -60,12 +60,18 @@ class BinOp(TreeNode):
         else:
             return ""
 
-def visit(ast: TreeNode):test_BinOp()
+def visit(ast: TreeNode):
     return ast.visit()
 
-def test_BinOp():
+def test_BinOp(): 
     left = Num(2)
     right = Num(5)
     t = BinOp(left,right,"+")
     t2 = BinOp(t,t,"+")
     print(visit(t2))
+
+def test_BinOp2():
+    left = Num(2)
+    right = BinOp(Num(4),Num(2),"+")
+    t = BinOp(left,right,"*")
+    print(visit(t))
